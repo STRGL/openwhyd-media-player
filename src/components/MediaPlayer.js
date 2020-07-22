@@ -7,7 +7,7 @@ class MediaPlayer extends React.Component {
         super(props);
         this.state = {
             isLoading: false, 
-            tracks: {
+            playlist: {
                 tracks: []
             },
             current: null
@@ -28,7 +28,7 @@ class MediaPlayer extends React.Component {
                 //* SET LOADING BACK TO FALSE AND SET STATE
                 this.setState({
                     isLoading: false,
-                    tracks: data,
+                    playlist: data,
                     current: data.tracks[0].eId
                 })
             }).catch(e => {
@@ -41,16 +41,12 @@ class MediaPlayer extends React.Component {
     handleClick(e) {
         //* SAVE DATA TO VARIABLE FOR USER IN SET STATE
         const id = e.currentTarget.dataset.id;
-        this.setState(prevState => {
-            return {
-                current: id
-            }
-        })
+        this.setState({current: id})
     }
     
     render() { 
         //* SAVE SHORTER REFERENCE TO TRACKS
-        const tracksData = this.state.tracks.tracks;
+        const tracksData = this.state.playlist.tracks;
 
         return ( 
             <div>
