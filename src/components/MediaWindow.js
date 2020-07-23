@@ -8,7 +8,7 @@ const MediaWindow = props => {
     const handleMedia = () => {
         //* CHECK THAT PROPS ARE AVAILABLE FIRST
         if(props.source) {
-            //* SAVE SHORTER REFERENCE TO 
+            //* SAVE SHORTER REFERENCE TO SOURCE
             const {source} = props;
             const prefix = source.match(/\/([a-z]{2})\//)[1];
             switch (prefix) {
