@@ -10,14 +10,22 @@ const Navigation = styled.div`
     width: 100%;
     height: 40px;
     background-color: #282828;
+    text-align: center;
     * {
+        font-size: 16px;
         width: 33.333%;
     }
 `
 
 const NavigationButton = styled.button`
-    color: ${props => props.disabled ? '#262626' : '#ffffff'};
+    color: ${props => props.disabled ? '#aaaaaa' : '#ffffff'};
     border: none;
+    background-color: transparent;
+    transition: font-size 0.1s;
+    &:hover:not(:disabled) {
+        cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+        font-size: 17px;
+    }
     &:hover {
         cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
     }
@@ -31,6 +39,10 @@ const StyledPlaylist = styled.section`
 
 const StyledPageDisplay = styled.div`
     color: #ffffff;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 `
 
 //* PLAYLIST COMPONENT TO BROWSE AVAILABLE MEDIA

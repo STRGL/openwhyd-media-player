@@ -6,6 +6,7 @@ import SoundCloud from './MediaPlayers/SoundCloud';
 const StyledDiv = styled.div`
     min-height: 400px;
     height: 50vh;
+    box-shadow: 0px 2px 14px #555;
 `
 
 //*CHANGED TO STATELESS FUNCTIONAL COMPONENT. DIDN'T NEED CLASS COMPONENT
@@ -27,7 +28,7 @@ const MediaWindow = props => {
                 case 'sc':
                     console.log(`It's a SoundCloud Track`, source.match(/\/[a-z]{2}\/\w+\/.+#(https:\/\/api\.soundcloud\.com\/tracks\/\d{9})/));
                     //* STRIP URL FROM EID
-                    const soundcloudUrl = source.match(/\/[a-z]{2}\/\w+\/.+#(https:\/\/api\.soundcloud\.com\/tracks\/\d{9})/)[1];
+                    const soundcloudUrl = source.match(/\/[a-z]{2}\/.+\/.+#(https:\/\/api\.soundcloud\.com\/tracks\/\d{9})/)[1];
                     return <SoundCloud url={soundcloudUrl} />            
                 default:
                     console.warn(`Case "${prefix}" not handled.`)

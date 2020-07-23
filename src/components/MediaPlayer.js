@@ -92,9 +92,17 @@ class MediaPlayer extends React.Component {
         this.setState({current: id})
     }
 
-    // StyledPlaylist = styled(Playlist)`
-    //     background-color: red;
-    // `
+    StyledH1 = styled.h1`
+        font-size: 35px;
+    `
+
+    Header = styled.header`
+        width: 100%;
+        background-color: #282828;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    `
     
     render() { 
         //* SAVE SHORTER REFERENCE TO TRACKS
@@ -102,7 +110,9 @@ class MediaPlayer extends React.Component {
 
         return ( 
             <div className="mediaPlayer">
-                <h1>{this.state.isLoading ? 'Loading...' : 'Music'}</h1>
+                <this.Header>
+                    <this.StyledH1>{this.state.isLoading ? 'Loading...' : this.props.title}</this.StyledH1>
+                </this.Header>
                 {this.state.isLoading}
                 <MediaWindow source={this.state.current}/>
                 <Playlist tracks={tracksData} loading={this.state.isLoading} handleClick={this.handleClick} handleSkip={this.props.handleSkip} currentPage={this.state.currentPage} hasMore={this.state}/>

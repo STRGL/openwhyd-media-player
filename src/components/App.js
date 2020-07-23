@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import '../reset.css';
 import MediaPlayer from './MediaPlayer';
 
@@ -6,6 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+        title: "OPENWHYD's Hottest Tracks",
         skip: 0,
         genre: 'ALL'
      }
@@ -29,9 +31,19 @@ class App extends React.Component {
       })
   }
 
+  StyledContainer = styled.div`
+    width: 100%;
+    * {
+        box-sizing: border-box;
+    }
+  `
+  
+
   render() { 
     return ( 
-      <MediaPlayer skip={this.state.skip} genre={this.state.genre} handleSkip={this.handleSkip}/>
+        <this.StyledContainer>
+            <MediaPlayer skip={this.state.skip} genre={this.state.genre} handleSkip={this.handleSkip} title={this.state.title}/>
+        </this.StyledContainer>
     );
   }
 }
