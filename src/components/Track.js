@@ -1,12 +1,53 @@
 import React from 'react';
+import styled from "styled-components";
+
+
+const Image = styled.img`
+    width: 50px;
+    height: 50px;
+`
+const Container = styled.div`
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #131313;
+    opacity: 1;
+    transition: background-color 0.25s, color 0.25s; 
+    font-size: 16px;
+    * {
+        margin-right: 15px;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(0,0,0,0.7);
+    }
+`
+
+const DetailsDiv = styled.div`
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    p:last-child {
+        opacity: 0.6;
+    }
+    *{
+        margin-bottom: 5px;
+    }
+`
 
 const Track = props => {
     return (  
-        <div data-id= {props.id} onClick={props.handleClick}>
-            <img className="trackImage" src={props.image} alt={`${props.trackName} artwork`} />
-            <p className="username">{props.username}</p>
-            <p className="trackName">{props.trackName}</p>
-        </div>
+        <Container data-id= {props.id} onClick={props.handleClick} className="track" color={props.trackNumber % 2}>
+            <p className="trackNumber">{props.trackNumber}</p>
+            <Image className="trackImage" src={props.image} alt={`${props.trackName} artwork`} />
+            <DetailsDiv className="details">
+                <p className="trackName">{props.trackName}</p>
+                <p className="username">{props.username}</p>
+            </DetailsDiv>
+        </Container>
     );
 }
  

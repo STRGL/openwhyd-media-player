@@ -1,6 +1,12 @@
 import React from 'react';
+import styled from 'styled-components';
 import YouTube from './MediaPlayers/YouTube';
 import SoundCloud from './MediaPlayers/SoundCloud';
+
+const StyledDiv = styled.div`
+    min-height: 400px;
+    height: 50vh;
+`
 
 //*CHANGED TO STATELESS FUNCTIONAL COMPONENT. DIDN'T NEED CLASS COMPONENT
 const MediaWindow = props => {
@@ -31,9 +37,9 @@ const MediaWindow = props => {
     }
 
     return (
-        <div className="container">
+        <StyledDiv className="container">
             {handleMedia()}
-        </div>
+        </StyledDiv>
         );
 }
  

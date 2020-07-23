@@ -1,6 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
 import Playlist from './Playlist';
 import MediaWindow from './MediaWindow';
+import Data from '../dummy.json';
 
 class MediaPlayer extends React.Component {
     constructor(props) {
@@ -48,6 +50,21 @@ class MediaPlayer extends React.Component {
              this.setState({isLoading: false});
              console.warn(`Failed to load data. Error: ${e}`)
          });
+
+        //* WILL LOAD IN 20 TRACKS OF DUMMY DATA
+        // this.setState(prevState => {
+        //     return {
+        //         isLoading: false,
+        //         playlist: Data,
+        //         currentPage: Data.hasMore.skip / 20 - 1
+        //     }
+        // })
+        // if(this.state.initialLaunch) {
+        //     this.setState({
+        //         current: Data.tracks[0].eId,
+        //         initialLaunch: false
+        //     });
+        // }
     }
 
     componentDidMount() {
@@ -74,6 +91,10 @@ class MediaPlayer extends React.Component {
         const id = e.currentTarget.dataset.id;
         this.setState({current: id})
     }
+
+    // StyledPlaylist = styled(Playlist)`
+    //     background-color: red;
+    // `
     
     render() { 
         //* SAVE SHORTER REFERENCE TO TRACKS
