@@ -16,7 +16,7 @@ class App extends React.Component {
     //* HANDLE CALLING ALL THE HOT TRACKS
     handleSkip(e) {
     //* REWORKING TO USE THE HASMORE.SKIP PROPERTY
-    //   console.log(e.currentTarget.dataset);
+      console.log(`Button Clicked:`, e.currentTarget.dataset);
       //* CAST BACK INTO A NUMBER
       const skipAmount = Number(e.currentTarget.dataset.skip);
     //   console.log(`${skipAmount}`);

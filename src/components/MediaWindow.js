@@ -10,6 +10,7 @@ const MediaWindow = props => {
         if(props.source) {
             //* SAVE SHORTER REFERENCE TO SOURCE
             const {source} = props;
+            console.log(source);
             const prefix = source.match(/\/([a-z]{2})\//)[1];
             switch (prefix) {
                 case 'yt':
@@ -18,9 +19,9 @@ const MediaWindow = props => {
                     const videoID = source.match(/\/[a-z]{2}\/(.+)/)[1];
                     return <YouTube videoID={videoID} />            
                 case 'sc':
-                    console.log(`It's a SoundCloud Track`, source.match(/\/[a-z]{2}\/(\w+)\/(.+)#(.+)\/stream/));
+                    console.log(`It's a SoundCloud Track`, source.match(/\/[a-z]{2}\/\w+\/.+#(https:\/\/api\.soundcloud\.com\/tracks\/\d{9})/));
                     //* STRIP URL FROM EID
-                    const soundcloudUrl = source.match(/\/[a-z]{2}\/(\w+)\/(.+)#(.+)\/stream/)[3];
+                    const soundcloudUrl = source.match(/\/[a-z]{2}\/\w+\/.+#(https:\/\/api\.soundcloud\.com\/tracks\/\d{9})/)[1];
                     return <SoundCloud url={soundcloudUrl} />            
                 default:
                     console.warn(`Case "${prefix}" not handled.`)

@@ -9,7 +9,13 @@ const Playlist = props => {
     return ( 
         <div className="playlist">
             {props.loading ? 'Loading Tracks...': trackComponents}   
-            {!props.loading && <><button className="backward" onClick={props.handleSkip} data-skip={props.hasMore - 20} disabled={props.hasMore === 20}>Back</button><button className="forward" onClick={props.handleSkip} data-skip={props.hasMore} disabled={!props.hasMore}>Forward</button></>}
+            {!props.loading && 
+            <>
+                <button className="backward" onClick={props.handleSkip} data-skip={Number(props.currentPage - 1)} disabled={props.currentPage === 0}>Back</button>
+                <p>{props.currentPage + 1}</p>
+                <button className="forward" onClick={props.handleSkip} data-skip={Number(props.currentPage + 1)} disabled={!props.hasMore}>Forward</button>
+            </>
+            }
         </div>
     );
 }

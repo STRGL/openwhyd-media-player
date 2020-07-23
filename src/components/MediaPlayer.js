@@ -15,6 +15,7 @@ class MediaPlayer extends React.Component {
                 tracks: []
             },
             current: null,
+            currentPage: 0
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -23,7 +24,7 @@ class MediaPlayer extends React.Component {
     //* REFACTORED OUT INTO SEPERATE FUNCTION IN ORDER TO REUSE UPON CHANGING SKIP
     getPlaylist() {
          //* GET ALL THE HOT TRACKS
-         fetch(`https://cors-anywhere.herokuapp.com/https://openwhyd.org/hot?format=json&skip=${this.props.skip}`)
+         fetch(`https://cors-anywhere.herokuapp.com/https://openwhyd.org/hot?format=json&skip=${this.props.skip * 20}`)
          .then(res => res.json())
          .then((data) => {
              console.log(data.tracks);
@@ -32,6 +33,7 @@ class MediaPlayer extends React.Component {
                 return {
                     isLoading: false,
                     playlist: data,
+                    currentPage: data.hasMore.skip / 20 - 1
                 }
              })
              //* CHECK IF THIS IS THE FIRST TIME THE COMPONENT IS BEING RENDERED. IF IT IS THEN SET CURRENT TO FIRST TRACK BUT ONLY THE FIRST TIME. THIS ALLOWS FOR BROWSING TRACKS WITHOUT INTERRUPTING PLAYBACK
@@ -55,17 +57,11 @@ class MediaPlayer extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState){
-        console.log('HERE COMES THE UPDATE...');
-        const skip = {
-            stateSkip: this.state.playlist.hasMore.skip,
-            propsSkip: this.props.skip,
-            prevStateSkip: prevState.playlist.hasMore.skip,
-            prevPropsSkip: prevProps.skip,
-        }
+        // console.log('HERE COMES THE UPDATE...');
+        console.log(this.props.skip, this.state.currentPage);
 
-        console.table(skip);
-
-        if(skip.propsSkip === skip.stateSkip) {
+        // //* ONLY UPDATE IF THE PREVIOUS DATASET IS DIFFERENT FROM THE ONE THIS WOULD REQUEST
+        if((this.state.currentPage  !== this.props.skip)) {
             this.getPlaylist();
         } else {
             console.log('SAME DATASET.');
@@ -88,7 +84,7 @@ class MediaPlayer extends React.Component {
                 <h1>{this.state.isLoading ? 'Loading...' : 'Music'}</h1>
                 {this.state.isLoading}
                 <MediaWindow source={this.state.current}/>
-                <Playlist tracks={tracksData} loading={this.state.isLoading} handleClick={this.handleClick} handleSkip={this.props.handleSkip} hasMore={this.state.playlist.hasMore.skip}/>
+                <Playlist tracks={tracksData} loading={this.state.isLoading} handleClick={this.handleClick} handleSkip={this.props.handleSkip} currentPage={this.state.currentPage} hasMore={this.state}/>
             </div>
         );
     }
