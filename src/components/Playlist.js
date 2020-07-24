@@ -57,7 +57,7 @@ const StyledPageDisplay = styled.div`
 //* PLAYLIST COMPONENT TO BROWSE AVAILABLE MEDIA
 const Playlist = props => {
     //* MAP DATA TO COMPONENTS
-    const trackComponents = props.tracks.map((track,index)  => <Track key={track._id} id={track.eId} image={track.img} trackName={track.name} username={track.uNm} trackNumber={props.currentPage * 20 + index + 1} handleClick={props.handleClick} index={index}/> )
+    const trackComponents = props.tracks.map((track,index)  => <Track key={track._id} id={track.eId} image={track.img} trackName={track.name} username={track.uNm} trackNumber={props.currentPage * 20 + index + 1} handleClick={props.handleClick} handleKeyPress={props.handleKeyPress} index={index}/> )
     return ( 
         <StyledPlaylist className="playlist">
             <ol>

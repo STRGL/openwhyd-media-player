@@ -17,16 +17,16 @@ const MediaWindow = props => {
         if(props.source) {
             //* SAVE SHORTER REFERENCE TO SOURCE
             const {source} = props;
-            console.log(source);
+            // console.log(source);
             const prefix = source.match(/\/([a-z]{2})\//)[1];
             switch (prefix) {
                 case 'yt':
-                    console.log(`It's a Youtube Video`);
+                    // console.log(`It's a Youtube Video`);
                     //* STRIP YOUTUBE ID FROM EID
                     const videoID = source.match(/\/[a-z]{2}\/(.+)/)[1];
                     return <YouTube tabIndex="0" videoID={videoID} />            
                 case 'sc':
-                    console.log(`It's a SoundCloud Track`, source.match(/\/[a-z]{2}\/\w+\/.+#(https:\/\/api\.soundcloud\.com\/tracks\/\d{9})/));
+                    // console.log(`It's a SoundCloud Track`, source.match(/\/[a-z]{2}\/\w+\/.+#(https:\/\/api\.soundcloud\.com\/tracks\/\d{9})/));
                     //* STRIP URL FROM EID
                     const soundcloudUrl = source.match(/\/[a-z]{2}\/.+\/.+#(https:\/\/api\.soundcloud\.com\/tracks\/\d{9})/)[1];
                     return <SoundCloud tabIndex="0" url={soundcloudUrl} />            

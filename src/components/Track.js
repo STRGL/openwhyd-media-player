@@ -44,7 +44,7 @@ const DetailsDiv = styled.div`
 
 const Track = props => {
     return (  
-        <Container data-id= {props.id} onClick={props.handleClick} className="track" color={props.trackNumber % 2} tabIndex={props.index + 2}>
+        <Container data-id= {props.id} onClick={props.handleClick} onKeyPress={props.handleKeyPress} className="track" color={props.trackNumber % 2} tabIndex={props.index + 2}>
             <p className="trackNumber">{props.trackNumber}</p>
             <Image className="trackImage" src={props.image} alt={`${props.trackName} artwork`} />
             <DetailsDiv className="details">

@@ -21,6 +21,7 @@ class MediaPlayer extends React.Component {
         }
 
         this.handleClick = this.handleClick.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     //* REFACTORED OUT INTO SEPERATE FUNCTION IN ORDER TO REUSE UPON CHANGING SKIP
@@ -29,7 +30,7 @@ class MediaPlayer extends React.Component {
          fetch(`https://cors-anywhere.herokuapp.com/https://openwhyd.org/hot?format=json&skip=${this.props.skip * 20}`)
          .then(res => res.json())
          .then((data) => {
-             console.log(data.tracks);
+            //  console.log(data.tracks);
              //* SET LOADING BACK TO FALSE AND SET STATE
              this.setState(prevState => {
                 return {
@@ -93,6 +94,13 @@ class MediaPlayer extends React.Component {
         this.setState({current: id})
     }
 
+    handleKeyPress(e) {
+        if(e.key === 'Enter') {
+            const id = e.currentTarget.dataset.id;
+            this.setState({current: id})
+        }
+    }
+
     StyledH1 = styled.h1`
         font-size: 30px;
     `
@@ -116,7 +124,7 @@ class MediaPlayer extends React.Component {
                 </this.Header>
                 {this.state.isLoading}
                 <MediaWindow source={this.state.current}/>
-                <Playlist tracks={tracksData} loading={this.state.isLoading} handleClick={this.handleClick} handleSkip={this.props.handleSkip} currentPage={this.state.currentPage} hasMore={this.state}/>
+                <Playlist tracks={tracksData} loading={this.state.isLoading} handleClick={this.handleClick} handleKeyPress={this.handleKeyPress} handleSkip={this.props.handleSkip} currentPage={this.state.currentPage} hasMore={this.state}/>
             </div>
         );
     }
