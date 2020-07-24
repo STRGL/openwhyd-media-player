@@ -35,6 +35,7 @@ class App extends React.Component {
     width: 100%;
     * {
         box-sizing: border-box;
+        font-family: sans-serif;
     }
   `
   

@@ -21,13 +21,14 @@ const NavigationButton = styled.button`
     color: ${props => props.disabled ? '#aaaaaa' : '#ffffff'};
     border: none;
     background-color: transparent;
-    transition: font-size 0.1s;
+    transition: font-size 0.1s, background-color 0.25s;
     &:hover:not(:disabled) {
         cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
         font-size: 17px;
     }
     &:hover {
         cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+        background-color: #111111;
     }
 `
 

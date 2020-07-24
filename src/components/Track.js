@@ -24,6 +24,9 @@ const Container = styled.div`
         cursor: pointer;
         background-color: rgba(0,0,0,0.7);
     }
+    &:focus {
+        outline-style: none;
+    }
 `
 
 const DetailsDiv = styled.div`

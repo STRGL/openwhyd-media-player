@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Playlist from './Playlist';
 import MediaWindow from './MediaWindow';
-import Data from '../dummy.json';
+// import Data from '../dummy.json';
 
 class MediaPlayer extends React.Component {
     constructor(props) {
@@ -93,7 +93,7 @@ class MediaPlayer extends React.Component {
     }
 
     StyledH1 = styled.h1`
-        font-size: 35px;
+        font-size: 30px;
     `
 
     Header = styled.header`
