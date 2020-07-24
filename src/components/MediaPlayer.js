@@ -75,14 +75,15 @@ class MediaPlayer extends React.Component {
 
     componentDidUpdate(prevProps, prevState){
         // console.log('HERE COMES THE UPDATE...');
-        console.log(this.props.skip, this.state.currentPage);
+        // console.log(this.props.skip, this.state.currentPage);
 
-        // //* ONLY UPDATE IF THE PREVIOUS DATASET IS DIFFERENT FROM THE ONE THIS WOULD REQUEST
+        //* ONLY UPDATE IF THE PREVIOUS DATASET IS DIFFERENT FROM THE ONE THIS WOULD REQUEST
         if((this.state.currentPage  !== this.props.skip)) {
             this.getPlaylist();
-        } else {
-            console.log('SAME DATASET.');
-        }
+        } 
+        // else {
+        //     console.log('SAME DATASET.');
+        // }
     }
 
     //* HANDLE CHANGING TRACK

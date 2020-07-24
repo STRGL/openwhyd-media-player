@@ -24,12 +24,12 @@ const MediaWindow = props => {
                     console.log(`It's a Youtube Video`);
                     //* STRIP YOUTUBE ID FROM EID
                     const videoID = source.match(/\/[a-z]{2}\/(.+)/)[1];
-                    return <YouTube videoID={videoID} />            
+                    return <YouTube tabIndex="0" videoID={videoID} />            
                 case 'sc':
                     console.log(`It's a SoundCloud Track`, source.match(/\/[a-z]{2}\/\w+\/.+#(https:\/\/api\.soundcloud\.com\/tracks\/\d{9})/));
                     //* STRIP URL FROM EID
                     const soundcloudUrl = source.match(/\/[a-z]{2}\/.+\/.+#(https:\/\/api\.soundcloud\.com\/tracks\/\d{9})/)[1];
-                    return <SoundCloud url={soundcloudUrl} />            
+                    return <SoundCloud tabIndex="0" url={soundcloudUrl} />            
                 default:
                     console.warn(`Case "${prefix}" not handled.`)
                     return false;

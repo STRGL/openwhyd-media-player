@@ -30,6 +30,11 @@ const NavigationButton = styled.button`
         cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
         background-color: #111111;
     }
+    &:focus {
+        outline-style: none;
+        background-color: #111111;
+        font-size: 17px;
+    }
 `
 
 const StyledPlaylist = styled.section`
@@ -49,17 +54,19 @@ const StyledPageDisplay = styled.div`
 //* PLAYLIST COMPONENT TO BROWSE AVAILABLE MEDIA
 const Playlist = props => {
     //* MAP DATA TO COMPONENTS
-    const trackComponents = props.tracks.map((track,index)  => <Track key={track._id} id={track.eId} image={track.img} trackName={track.name} username={track.uNm} trackNumber={props.currentPage * 20 + index + 1} handleClick={props.handleClick}/> )
+    const trackComponents = props.tracks.map((track,index)  => <Track key={track._id} id={track.eId} image={track.img} trackName={track.name} username={track.uNm} trackNumber={props.currentPage * 20 + index + 1} handleClick={props.handleClick} index={index}/> )
     return ( 
         <StyledPlaylist className="playlist">
-            {props.loading ? 'Loading Tracks...': trackComponents}   
+            <ol>
+                {props.loading ? 'Loading Tracks...': trackComponents}   
+            </ol>
             {!props.loading && 
             <Navigation className="navigation">
-                <NavigationButton className="backward" onClick={props.handleSkip} data-skip={Number(props.currentPage - 1)} disabled={props.currentPage === 0}>Back</NavigationButton>
+                <NavigationButton className="backward" onClick={props.handleSkip} data-skip={Number(props.currentPage - 1)} disabled={props.currentPage === 0} tabIndex="22">Back</NavigationButton>
                 <StyledPageDisplay>
                     <p>{props.currentPage + 1}</p>
                 </StyledPageDisplay>
-                <NavigationButton className="forward" onClick={props.handleSkip} data-skip={Number(props.currentPage + 1)} disabled={!props.hasMore}>Forward</NavigationButton>
+                <NavigationButton className="forward" onClick={props.handleSkip} data-skip={Number(props.currentPage + 1)} disabled={!props.hasMore} tabIndex="23">Forward</NavigationButton>
             </Navigation>
             }
         </StyledPlaylist>

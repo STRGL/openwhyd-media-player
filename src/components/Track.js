@@ -6,7 +6,7 @@ const Image = styled.img`
     width: 50px;
     height: 50px;
 `
-const Container = styled.div`
+const Container = styled.li`
     color: #fff;
     padding: 10px;
     display: flex;
@@ -25,6 +25,7 @@ const Container = styled.div`
         background-color: rgba(0,0,0,0.7);
     }
     &:focus {
+        background-color: rgba(0,0,0,0.7);
         outline-style: none;
     }
 `
@@ -43,7 +44,7 @@ const DetailsDiv = styled.div`
 
 const Track = props => {
     return (  
-        <Container data-id= {props.id} onClick={props.handleClick} className="track" color={props.trackNumber % 2}>
+        <Container data-id= {props.id} onClick={props.handleClick} className="track" color={props.trackNumber % 2} tabIndex={props.index + 2}>
             <p className="trackNumber">{props.trackNumber}</p>
             <Image className="trackImage" src={props.image} alt={`${props.trackName} artwork`} />
             <DetailsDiv className="details">
