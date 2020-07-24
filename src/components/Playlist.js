@@ -11,6 +11,8 @@ const Navigation = styled.div`
     height: 40px;
     background-color: #282828;
     text-align: center;
+    position: fixed;
+    bottom: 0;
     * {
         font-size: 16px;
         width: 33.333%;
@@ -41,6 +43,7 @@ const StyledPlaylist = styled.section`
     height: 50vh;
     position: relative;
     overflow: scroll;
+    padding-bottom: 40px;
 `
 
 const StyledPageDisplay = styled.div`
@@ -62,11 +65,11 @@ const Playlist = props => {
             </ol>
             {!props.loading && 
             <Navigation className="navigation">
-                <NavigationButton className="backward" onClick={props.handleSkip} data-skip={Number(props.currentPage - 1)} disabled={props.currentPage === 0} tabIndex="22">Back</NavigationButton>
+                <NavigationButton className="backward" onClick={props.handleSkip} data-skip={Number(props.currentPage - 1)} disabled={props.currentPage === 0} aria-disabled={props.currentPage === 0} tabIndex="22">Back</NavigationButton>
                 <StyledPageDisplay>
                     <p>{props.currentPage + 1}</p>
                 </StyledPageDisplay>
-                <NavigationButton className="forward" onClick={props.handleSkip} data-skip={Number(props.currentPage + 1)} disabled={!props.hasMore} tabIndex="23">Forward</NavigationButton>
+                <NavigationButton className="forward" onClick={props.handleSkip} data-skip={Number(props.currentPage + 1)} disabled={!props.hasMore} aria-disabled={!props.hasMore} tabIndex="23">Forward</NavigationButton>
             </Navigation>
             }
         </StyledPlaylist>
